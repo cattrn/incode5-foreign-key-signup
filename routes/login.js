@@ -4,8 +4,7 @@ const db = require('../database')
 const bcrypt = require('bcryptjs')
 
 router.get('/', (req, res) => {
-  res.send({
-    title: 'Login page',
+  res.render('pages/login', {
     message: req.query.message
   })
 })

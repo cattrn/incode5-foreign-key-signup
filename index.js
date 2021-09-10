@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const session = require('express-session')
 const signupRouter = require('./routes/signup')
 const loginRouter = require('./routes/login')
+const homeRouter = require('./routes/home')
 // const sessionConfig = require('./session') // IF IMPORTING SESSION CONFIG FROM EXTERNAL FILE
 
 const app = express()
@@ -15,7 +16,8 @@ app.use(express.json())
 
 app.use(morgan('dev'))
 
-// view engine - IGNORED FOR TODAY
+// view engine
+app.set('view engine', 'ejs')
 
 // Session config
 app.use(session({
@@ -33,6 +35,7 @@ app.use(session({
 // route middleware
 app.use('/signup', signupRouter)
 app.use('/login', loginRouter)
+app.use('/', homeRouter)
 
 app.get('/login', (req, res) => {
   res.send(req.query.message)
