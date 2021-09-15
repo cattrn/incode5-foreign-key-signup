@@ -2,12 +2,13 @@ const express = require("express")
 const bcrypt = require("bcryptjs")
 const router = express.Router()
 const db = require("../database")
+const {redirectToHome} = require('../middleware')
 
-router.get('/', (req, res) => {
+router.get('/', redirectToHome, (req, res) => {
   res.render("pages/signup")
 })
 
-router.post("/", (req, res) => {
+router.post("/", redirectToHome, (req, res) => {
   const { first_name, last_name, email, password, confirm_password } = req.body
   // 1. validate user data (also include whether password confirmation is accurate)
 

@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
-// const {redirectToLogin} = require('../middleware')
+const { redirectToLogin } = require("../middleware")
 
-router.get("/", (req, res) => {
+router.get("/", redirectToLogin, (req, res) => {
   res.send(`
   <h1>Welcome to the home page!</h1>
   <a href="/logout">Logout</a>

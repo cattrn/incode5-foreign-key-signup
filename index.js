@@ -6,8 +6,6 @@ const signupRouter = require("./routes/signup")
 const loginRouter = require("./routes/login")
 const homeRouter = require("./routes/home")
 const logoutRouter = require("./routes/logout")
-const { redirectToHome } = require("./middleware")
-const { redirectToLogin } = require("./middleware")
 // const sessionConfig = require('./session') // IF IMPORTING SESSION CONFIG FROM EXTERNAL FILE
 
 const app = express()
@@ -38,10 +36,10 @@ app.use(
 // app.use(session(sessionConfig)) // IF IMPORTING CONFIG FROM EXTERNAL FILE
 
 // route middleware
-app.use("/signup", redirectToHome, signupRouter)
-app.use("/login", redirectToHome, loginRouter)
-app.use("/logout", redirectToLogin, logoutRouter)
-app.use("/", redirectToLogin, homeRouter)
+app.use("/signup", signupRouter)
+app.use("/login", loginRouter)
+app.use("/logout", logoutRouter)
+app.use("/", homeRouter)
 
 app.listen(PORT, () =>
   console.log(`App is listening at http://localhost:${PORT}`)
