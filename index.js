@@ -2,10 +2,12 @@ require("dotenv").config()
 const express = require("express")
 const morgan = require("morgan")
 const session = require("express-session")
+// const flash = require('express-flash')
 const signupRouter = require("./routes/signup")
 const loginRouter = require("./routes/login")
 const homeRouter = require("./routes/home")
 const logoutRouter = require("./routes/logout")
+const newRouter = require("./routes/new")
 // const sessionConfig = require('./session') // IF IMPORTING SESSION CONFIG FROM EXTERNAL FILE
 
 const app = express()
@@ -16,6 +18,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.use(morgan("dev"))
+// app.use(flash())
 
 // view engine
 app.set("view engine", "ejs")
@@ -39,6 +42,7 @@ app.use(
 app.use("/signup", signupRouter)
 app.use("/login", loginRouter)
 app.use("/logout", logoutRouter)
+app.use("/new", newRouter)
 app.use("/", homeRouter)
 
 app.listen(PORT, () =>

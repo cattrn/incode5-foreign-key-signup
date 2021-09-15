@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const {redirectToHome} = require('../middleware')
 
 router.get('/', redirectToHome, (req, res) => {
+  // req.flash('info', 'Welcome')
   res.render('pages/login', {
     message: req.query.message
   })
